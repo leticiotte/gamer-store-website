@@ -1,6 +1,6 @@
 'use client';
 import { Product } from '@/core';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 const baseUrl = 'http://localhost:3030/products';
 
@@ -13,11 +13,14 @@ export default function useProducts() {
     return await response.json();
   }
 
-  async function findById(id: number): Promise<Product> {
+  const findById = useCallback(async function findById(
+    id: number
+  ): Promise<Product> {
     const response = await fetch(`${baseUrl}/${id}`);
 
     return (await response.json()) ?? null;
-  }
+  },
+  []);
 
   useEffect(() => {
     findAll().then(setProducts);
