@@ -4,6 +4,7 @@ import { Product } from '@/core';
 import { IconShoppingCartPlus } from '@tabler/icons-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import ReviewRating from '../shared/ReviewRating';
 
 export interface ProductItem {
   product: Product;
@@ -16,6 +17,9 @@ export default function ProductItem(props: ProductItem) {
       href={`/product/${product.id}`}
       className="flex flex-col bg-violet-dark border border-white/10 rounded-xl relative max-w-[350px]"
     >
+      <div className="absolute flex justify-end top-2.5 right-2.5">
+        <ReviewRating rating={product.rating} />
+      </div>
       <div className="h-48 w-full relative">
         <Image
           src={product.image}

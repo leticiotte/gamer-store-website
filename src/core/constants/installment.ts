@@ -1,0 +1,2 @@
+export const MAX_NUMBER_OF_INSTALLMENT = 12;
+export const MONTHLY_INTEREST_RATE = 0.0167;

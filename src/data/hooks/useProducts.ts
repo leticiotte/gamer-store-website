@@ -15,10 +15,15 @@ export default function useProducts() {
 
   const findById = useCallback(async function findById(
     id: number
-  ): Promise<Product> {
-    const response = await fetch(`${baseUrl}/${id}`);
+  ): Promise<Product | null> {
+    try {
+      const response = await fetch(`${baseUrl}/${id}`);
 
-    return (await response.json()) ?? null;
+      return (await response.json()) ?? null;
+    } catch (error) {
+      console.error('Erro ao obter produto por id ', error);
+      return null;
+    }
   },
   []);
 
